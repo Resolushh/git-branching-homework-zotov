@@ -1,16 +1,18 @@
-def build_report(student_name, group, subjects):
+from profile import get_profile
+from subjects import SUBJECTS
+
+
+def build_report():
+    profile = get_profile()
     lines = [
-        "Отчёт студента",
-        f"ФИО: {student_name}",
-        f"Группа: {group}",
-        "Дисциплины:",
+        "Итоговый отчёт по Git Branching App",
+        f"Студент: {profile['name']}",
+        f"Группа: {profile['group']}",
+        f"Количество дисциплин: {len(SUBJECTS)}",
+        "Статус: ветки, merge и Pull Request отработаны",
     ]
-    lines.extend(f"  - {subject}" for subject in subjects)
     return "\n".join(lines)
 
 
 def print_report():
-    from profile import GROUP, STUDENT_NAME
-    from subjects import SUBJECTS
-
-    print(build_report(STUDENT_NAME, GROUP, SUBJECTS))
+    print("\n" + build_report())
